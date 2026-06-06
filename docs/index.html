@@ -1,0 +1,52 @@
+# Shorthand Skill
+
+Compress AI agent skill definitions by 35-40% while preserving 100% of data. Inspired by court stenography.
+
+## What It Does
+
+Shorthand-skill provides a notation system (symbols, abbreviations, compact formatting) for writing AI agent skill definitions that consume fewer tokens while retaining complete technical accuracy.
+
+## Key Concepts
+
+- **Dictionary First** — The `shorthand-dict` skill defines all symbols and abbreviations. Load it first.
+- **Symbol Operators** — `⚡` (primary), `↩A` (fallback), `⊕` (call skill), `✗` (do not), `⟐` (cross-reference)
+- **Section Abbreviations** — `§2 tri`, `§3 pre`, `§5 app` instead of full section titles
+- **Compact Tables** — Pipe tables replace verbose paragraphs
+- **Zero Data Loss** — Every approach, finding, command, and mapping is preserved
+
+## Skills
+
+| Skill | Description |
+|-------|-------------|
+| shorthand | Core compression notation and rules |
+| shorthand-dict | Dictionary of all symbols and abbreviations |
+| shorthand-commit | Compressed commit messages |
+| shorthand-compress | Convert verbose skills to shorthand |
+
+## Sample Skills
+
+| Sample | Tier | Description |
+|--------|------|-------------|
+| port-scanner | 3 (Tools) | Network reconnaissance with 5 approaches + fallbacks |
+| tool-setup | 1.5 (Sub-Core) | Universal dependency resolver with 5 approaches |
+
+## Install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/khushalmistry/shorthand-skill/main/install.sh | bash
+```
+
+Or clone and copy `skills/` to your agent's skill directory.
+
+## Stats
+
+| Metric | Normal | Shorthand | Saved |
+|--------|-------:|----------:|------:|
+| Words | 4,995 | 3,257 | **35%** |
+| Bytes | 35,354 | 21,874 | **38%** |
+| Approaches | 5 | 5 | **100%** |
+| Compliance maps | 12 | 12 | **100%** |
+
+## License
+
+MIT
