@@ -4,6 +4,7 @@ description: >
   Write commit messages in shorthand notation. Terse, conventional,
   why-over-what. Subject ≤50 chars. Use when writing commits for
   projects that use shorthand-formatted skill files.
+license: MIT
 ---
 
 Write commit messages terse. Conventional Commits format. Why over what.

@@ -2,13 +2,15 @@
 name: shorthand
 description: >
   Skill compression framework. Use shorthand notation to write skill definitions
-  with 35-40% fewer tokens while preserving 100% of data. Load shorthand-dict first,
-  then write skills using symbols, abbreviations, and compact formatting patterns.
+  with 35-40% fewer tokens while preserving 100% of required data in evaluation.
+  Read references/DICTIONARY.md or load shorthand-dict first, then write skills
+  using symbols, abbreviations, and compact formatting patterns.
   Trigger: "use shorthand", "write in shorthand", "/shorthand", or when composing
   skills that need token efficiency.
+license: MIT
 ---
 
-Write skill definitions in shorthand notation. All data preserved. Only representation compressed.
+Write skill definitions in shorthand notation. All required data preserved. Only representation compressed.
 
 ## Persistence
 
@@ -18,7 +20,7 @@ Default: **full**. Switch: `/shorthand lite|full|ultra`.
 
 ## Rules
 
-Use shorthand symbols and abbreviations defined in `shorthand-dict` skill. Key principles:
+Use shorthand symbols and abbreviations defined in `references/DICTIONARY.md` or the standalone `shorthand-dict` skill. Key principles:
 
 1. **Symbols over words** — `⚡` instead of "(PRIMARY)", `↩A` instead of "FALLBACK A"
 2. **Abbreviations over full forms** — `svc` instead of "service", `sev` instead of "severity"
@@ -137,8 +139,8 @@ Before publishing a shorthand skill, verify:
 
 ## Design Principles
 
-1. **Zero Data Loss** — Every approach, finding, command, and mapping must be preserved
-2. **Dictionary Reference** — Load `shorthand-dict` skill first so the agent can decode all symbols
+1. **Zero Evaluated Data Loss** — Every required approach, finding, command, and mapping must be preserved
+2. **Dictionary Reference** — Read `references/DICTIONARY.md` or load `shorthand-dict` first so the agent can decode all symbols
 3. **Graceful Degradation** — Every approach has a fallback. Last fallback (`↩Z`) is always a safe action
 4. **Compliance-First** — Every skill that can produce a finding MUST define compliance mappings
 5. **No Upward Calls** — Higher-tier skills call lower-tier. Never reverse.

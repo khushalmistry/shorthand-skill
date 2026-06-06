@@ -5,7 +5,6 @@ description: >
   Load this skill first when reading or writing shorthand-formatted skills.
   Defines all symbols, abbreviations, section headers, and formatting patterns.
   This is the single source of truth for decoding compressed skill files.
-license: MIT
 ---
 
 # Shorthand Dictionary v1.0

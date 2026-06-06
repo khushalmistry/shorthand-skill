@@ -1,0 +1,111 @@
+{
+  "name": "port-scanner",
+  "verbose": "evals/fixtures/port-scanner.verbose.md",
+  "shorthand": "skills/port-scanner/SKILL.md",
+  "required_facts": [
+    {
+      "id": "trigger.recon-enum",
+      "must_contain": ["Recon/Enum phase starts"]
+    },
+    {
+      "id": "safety.authorization-gate",
+      "must_contain": ["Explicit permission", "scope document", "RET no-op"]
+    },
+    {
+      "id": "dependency.tool-setup",
+      "must_contain": ["tool-setup", "nmap not found", "post_install=\"setcap\""]
+    },
+    {
+      "id": "approach.syn-half-open",
+      "must_contain": ["SYN Half-Open", "nmap -sS -sV -O", "--osscan-guess", "cap_net_raw"]
+    },
+    {
+      "id": "approach.tcp-connect",
+      "must_contain": ["TCP Connect", "nmap -sT -sV", "no root", "no OS detect"]
+    },
+    {
+      "id": "approach.fragmented-syn",
+      "must_contain": ["Fragmented SYN", "nmap -sS -f -sV", "--data-length 24", "authorization explicitly allows evasion"]
+    },
+    {
+      "id": "approach.decoy-scan",
+      "must_contain": ["Decoy Scan", "nmap -sS -D RND:<N>", "--source-port 53", "authorization explicitly allows decoys"]
+    },
+    {
+      "id": "approach.nc-fallback",
+      "must_contain": ["nc / /dev/tcp", "nc -zv -w3", "top-100 ports", "No svc/OS"]
+    },
+    {
+      "id": "scan-type.standard",
+      "must_contain": ["standard", "1000", "T4", "default"]
+    },
+    {
+      "id": "scan-type.stealth",
+      "must_contain": ["stealth", "100", "T2", "3→4→1→2"]
+    },
+    {
+      "id": "instruction.preflight",
+      "must_contain": ["VERIFY authorization + scope", "DETERMINE params", "MKDIR ~/output/scanner/"]
+    },
+    {
+      "id": "instruction.parse-normalize",
+      "must_contain": ["PARSE XML", "NORMALIZE to structured JSON", "_normalized.json"]
+    },
+    {
+      "id": "error.e-host-down",
+      "must_contain": ["E_HOST_DOWN", "Add `-Pn`, retry"]
+    },
+    {
+      "id": "error.e-no-root",
+      "must_contain": ["E_NO_ROOT", "Switch -sT"]
+    },
+    {
+      "id": "error.e-all-filtered",
+      "must_contain": ["E_ALL_FILTERED", "Try ↩B/↩C"]
+    },
+    {
+      "id": "state.open-ports",
+      "must_contain": ["s:t_<ip>_ports", "Open ports"]
+    },
+    {
+      "id": "artifact.xml",
+      "must_contain": ["XML", "~/output/scanner/\\<tgt\\>_\\<type\\>_\\<ts\\>.xml"]
+    },
+    {
+      "id": "finding.anon-ftp",
+      "must_contain": ["Anon FTP", "Anonymous FTP login allowed", "M"]
+    },
+    {
+      "id": "finding.smb-signing",
+      "must_contain": ["SMB signing off", "signing: disabled", "M"]
+    },
+    {
+      "id": "compliance.owasp-a05",
+      "must_contain": ["OWASP-T10: A05", "Security Misconfiguration", "Direct"]
+    },
+    {
+      "id": "compliance.nist-cm7",
+      "must_contain": ["NIST53: CM-7", "Least Functionality", "Direct"]
+    },
+    {
+      "id": "compliance.mitre-t1046",
+      "must_contain": ["MITRE: T1046", "Network Service Discovery", "Direct"]
+    },
+    {
+      "id": "template.open-port",
+      "must_contain": ["F: Open Service Port", "Cls: non-com", "Sev: I"]
+    },
+    {
+      "id": "template.insecure-protocol",
+      "must_contain": ["F: Insecure Protocol Exposed", "ASVS V9.1.1", "Sev: H"]
+    },
+    {
+      "id": "template.no-open-ports",
+      "must_contain": ["F: No Open Ports", "Cls: comply", "Verify host operational"]
+    },
+    {
+      "id": "limitation.masscan",
+      "must_contain": ["Large scans (/16+)", "masscan first", "targeted nmap"]
+    }
+  ]
+}

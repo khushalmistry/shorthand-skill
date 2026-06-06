@@ -2,15 +2,16 @@
 name: shorthand-compress
 description: >
   Rewrite skill files from verbose/normal format to shorthand notation.
-  Reduces token count by 35-40% while preserving 100% of data.
+  Reduces token count by 35-40% while preserving 100% of required data in evaluation.
   Trigger: /shorthand-compress <filepath> or "compress this skill to shorthand".
+license: MIT
 ---
 
 # Shorthand Compress
 
 ## Purpose
 
-Rewrite skill files from verbose/normal markdown into shorthand notation. Uses symbols, abbreviations, and compact tables from `shorthand-dict`. Compressed version overwrites original. Backup saved as `<file>.original.md`.
+Rewrite skill files from verbose/normal markdown into shorthand notation. Uses symbols, abbreviations, and compact tables from `shorthand-dict`. Default output is `<file>.shorthand.md`; overwrite the original only when the operator explicitly asks for in-place compression. When overwriting, save a timestamped backup as `<file>.original.<YYYYMMDDHHMMSS>.md`.
 
 ## Process
 
@@ -23,9 +24,10 @@ Rewrite skill files from verbose/normal markdown into shorthand notation. Uses s
    - State variables: `state:tool_x_available` → `s:x_avail`
    - Tables: compress prose into pipe tables
    - Finding templates: expand `Finding:` → `F:` with `Cls:`, `Sev:`, `Ref:`
-4. Write compressed version to original path
-5. Save backup as `<filename>.original.md`
-6. Report token savings
+4. Write compressed version to `<file>.shorthand.md`
+5. If user explicitly requested in-place overwrite, save backup as `<filename>.original.<YYYYMMDDHHMMSS>.md`, then replace original
+6. Run the evaluation harness or a task-specific preservation checklist
+7. Report token savings and any missing facts
 
 ## Transformations
 
@@ -55,3 +57,4 @@ Rewrite skill files from verbose/normal markdown into shorthand notation. Uses s
 - Never compress YAML frontmatter — preserve exactly
 - Never compress legal/compliance language in finding templates that requires exact wording
 - Always load `shorthand-dict` skill first so the agent understands the output
+- Never claim 0% loss unless an explicit preservation manifest/evaluation passes
